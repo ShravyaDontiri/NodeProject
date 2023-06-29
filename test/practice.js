@@ -2,7 +2,7 @@ import supertest from 'supertest';
 import {expect} from 'chai';
 
 
-
+//function
 function generateRandomNumber() {
     const min = 0; // Minimum value for the random number
     const max = 9; // Maximum value for the random number
