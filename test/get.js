@@ -26,7 +26,7 @@ console.error(err);
         status: 'inactive'
     };
        return endpoint.post('users').set('Authorization',`Bearer ${TOKEN}`).send(data).then((res) => {
-            console.log(res.body);
+            //console.log(res.body);
             expect(res.body).to.deep.include(data);
         expect(res.body).to.have.property('id');
             

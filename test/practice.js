@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-//import {expect} from 'chai';
+import {expect} from 'chai';
 
 
 
@@ -22,8 +22,8 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
     it('GET/services',(done) => {
         
         endpoint.get('services.htm').then((res) => {
-            console.log(res.body);
-            //expect(res).to.have.status(200);
+            //console.log(res.body);
+            expect(res).to.have.status(200);
         done();
         })
             .catch((err) => {
@@ -47,8 +47,8 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
         };
     
         return endpoint.post('register.htm').send(data).then((res) => {
-        console.log(res.body);
-        //expect(res).to.have.status(200);
+        //console.log(res.body);
+        expect(res).to.have.status(200);
           })
           .catch((err)=>{
             console.error(err);
@@ -62,8 +62,8 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
     password: `test${x}`
        };
        return endpoint.post('login.htm').send(cred).then((res) => {
-            console.log(res.body);
-            //expect(res).to.have.status(200);
+            //console.log(res.body);
+            expect(res).to.have.status(200);
        })
        .catch((err)=>{
             console.error(err);
@@ -72,13 +72,15 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
 
    it('GET/logout',() => {
     return endpoint.get('logout.htm').then((res)=> {
-      console.log(res.body);
+      //console.log(res.body);
     })
     .catch((err)=>{
         console.error(err);
     });
 
    });
+
+
 
  });
 
