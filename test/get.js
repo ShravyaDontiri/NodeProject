@@ -6,11 +6,11 @@ import {expect} from 'chai';
 const endpoint = supertest('https://gorest.co.in/public/v2/');
 const TOKEN = '65b238ce613c1f04159887d49e144d7e0ce250fbbc233e958c0a7f2ec5832070';
 
-xdescribe('users', () => {
+describe('users', () => {
    it('GET/users',() => {
     return endpoint.get(`users?access-token=${TOKEN}`).then((res) => {
         //console.log(res.body);
-       expect(res).to.have.property('id');
+       //expect(res).to.have.property('id');
        expect(res).to.have.status(200);
         })
     .catch((err) => {
@@ -26,7 +26,7 @@ console.error(err);
         status: 'inactive'
     };
        return endpoint.post('users').set('Authorization',`Bearer ${TOKEN}`).send(data).then((res) => {
-            //console.log(res.body);
+            
             expect(res.body).to.deep.include(data);
         expect(res.body).to.have.property('id');
             

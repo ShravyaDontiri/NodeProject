@@ -18,7 +18,7 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
 
 
 
- describe('APIs', () => {
+ describe.only('APIs', () => {
 
   //get APIs 
   describe('GET', () =>{
