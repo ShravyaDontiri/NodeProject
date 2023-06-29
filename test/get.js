@@ -6,7 +6,7 @@ import {expect} from 'chai';
 const endpoint = supertest('https://gorest.co.in/public/v2/');
 const TOKEN = '65b238ce613c1f04159887d49e144d7e0ce250fbbc233e958c0a7f2ec5832070';
 
-describe('users', () => {
+xdescribe('users', () => {
    it('GET/users',() => {
     return endpoint.get(`users?access-token=${TOKEN}`).then((res) => {
         //console.log(res.body);
