@@ -19,58 +19,21 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
 
 
  describe('APIs', () => {
-    it('GET/services',(done) => {
+
+  //get APIs 
+  describe('GET', () =>{
+    it('services',(done) => {
         
-        endpoint.get('services.htm').then((res) => {
-            //console.log(res.body);
-            expect(res).to.have.status(200);
-        done();
-        })
-            .catch((err) => {
-                console.error(err);
-                    });
-    });
-    it('POST/register' , () => {
-        const data = {
-        firstName: `Test${x}`,
-    lastName: `Test${x}`,
-    street: 'city',
-    city: 'bangalore',
-    state: 'karnataka',
-    zipCode: '111',
-    phoneNumber: '111',
-    ssn: '111',
-    username: `test${x}`,
-    password: `test${x}`,
-    repeatedPassword: `test${x}`
-
-        };
-    
-        return endpoint.post('register.htm').send(data).then((res) => {
-        //console.log(res.body);
-        expect(res).to.have.status(200);
-          })
-          .catch((err)=>{
-            console.error(err);
-          });
-        
-    });
-
-   it('POST/login' , () => {
-       const cred = {
-    username: `test${x}`,
-    password: `test${x}`
-       };
-       return endpoint.post('login.htm').send(cred).then((res) => {
-            //console.log(res.body);
-            expect(res).to.have.status(200);
-       })
-       .catch((err)=>{
-            console.error(err);
-       });
-   });
-
-   it('GET/logout',() => {
+      endpoint.get('services.htm').then((res) => {
+          //console.log(res.body);
+          expect(res).to.have.status(200);
+      done();
+      })
+          .catch((err) => {
+              console.error(err);
+                  });
+  });
+  it('logout',() => {
     return endpoint.get('logout.htm').then((res)=> {
       //console.log(res.body);
     })
@@ -79,10 +42,53 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
     });
 
    });
+  });
+    
+// post APIs
+  describe('POST',()=>{
 
+    it('POST/register' , () => {
+      const data = {
+      firstName: `Test${x}`,
+  lastName: `Test${x}`,
+  street: 'city',
+  city: 'bangalore',
+  state: 'karnataka',
+  zipCode: '111',
+  phoneNumber: '111',
+  ssn: '111',
+  username: `test${x}`,
+  password: `test${x}`,
+  repeatedPassword: `test${x}`
 
+      };
+  
+      return endpoint.post('register.htm').send(data).then((res) => {
+      //console.log(res.body);
+      expect(res).to.have.status(200);
+        })
+        .catch((err)=>{
+          console.error(err);
+        });
+      
+  });
 
+ it('POST/login' , () => {
+     const cred = {
+  username: `test${x}`,
+  password: `test${x}`
+     };
+     return endpoint.post('login.htm').send(cred).then((res) => {
+          //console.log(res.body);
+          expect(res).to.have.status(200);
+     })
+     .catch((err)=>{
+          console.error(err);
+     });
  });
+});
+
+  });
 
 
 
