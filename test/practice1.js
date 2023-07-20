@@ -1,5 +1,10 @@
 import supertest from 'supertest';
-import {expect} from 'chai';
+//import {expect} from 'chai';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+
+chai.use(chaiHttp);
+const expect = chai.expect;
 
 
 //function
@@ -18,36 +23,31 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
 
 
 
- describe('APIs', () => {
+ describe.only('APIs', () => {
 
   //get APIs 
   describe('GET', () =>{
-    it('services',(done) => {
+    it('services',async() => {
         
-      endpoint.get('services.htm').then((res) => {
-          //console.log(res.body);
-          expect(res).to.have.status(200);
-      done();
+     const res = await endpoint.get('services.htm');
+     //console.log(res.body);
+     expect(res).to.have.status(200);
       })
-          .catch((err) => {
-              console.error(err);
-                  });
-  });
-  it('logout',() => {
-    return endpoint.get('logout.htm').then((res)=> {
+          
+  
+  it('logout',async () => {
+    const res = await endpoint.get('logout.htm');
       //console.log(res.body);
+      expect(res).to.have.status(200);
     })
-    .catch((err)=>{
-        console.error(err);
-    });
 
    });
-  });
+  
     
 // post APIs
   describe('POST',()=>{
 
-    it('POST/register' , () => {
+    it('POST/register' , async () => {
       const data = {
       firstName: `Test${x}`,
   lastName: `Test${x}`,
@@ -63,32 +63,28 @@ const endpoint = supertest('https://parabank.parasoft.com/parabank/');
 
       };
   
-      return endpoint.post('register.htm').send(data).then((res) => {
-      //console.log(res.body);
-      expect(res).to.have.status(200);
-        })
-        .catch((err)=>{
-          console.error(err);
-        });
+      const postRes = await endpoint.post('register.htm').send(data)
+      console.log(postRes.body);
+      expect(postRes).to.have.status(200);
+       
       
   });
 
- it('POST/login' , () => {
+ it('POST/login' , async() => {
      const cred = {
   username: `test${x}`,
   password: `test${x}`
      };
-     return endpoint.post('login.htm').send(cred).then((res) => {
-          //console.log(res.body);
-          expect(res).to.have.status(200);
-     })
-     .catch((err)=>{
-          console.error(err);
-     });
+     const postRes = await endpoint.post('login.htm').send(cred)
+          console.log(postRes.body);
+          expect(postRes).to.have.status(200);
+     
  });
 });
 
-  });
+ });
+
+  
 
 
 
